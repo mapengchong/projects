@@ -1,0 +1,105 @@
+import java.util.Scanner;
+import java.text.DecimalFormat;
+
+public class pengchongmaProgram1 {
+
+	public static void main(String[] args) {
+		
+		//To save the results in 2 decimal place
+		DecimalFormat df = new DecimalFormat(".##");
+		
+		//variable declaration
+		int numOfSchools;
+		int numOfStudents;
+		int attendance;
+		int sum;
+		int average;
+		int ind = 0;
+		double per;
+		double max = 0;
+		
+		//set up scanner object
+		Scanner input = new Scanner(System.in);
+		
+		//collect the number of school from user
+		System.out.println("How many schools do you have in your district: ");
+		numOfSchools = input.nextInt(); 
+		
+		//loop for every school
+		for(int i=1;i<=numOfSchools;i++) { //i for every school
+			System.out.println("Enter data for school " + i);
+			System.out.print("How many students are enrolled in school " + i + ": ");
+			numOfStudents = input.nextInt(); 
+		
+		//loop for everyday
+		sum = 0;
+		for(int j=1;j<=5;j++){ //j for everyday
+		System.out.println("Enter the attendance for day "+j+" : ");
+		attendance = input.nextInt(); 
+		
+		//calculated the sum of attendance and average attendance student 
+		sum += attendance;
+		average = sum/5; 
+		per = (average*100.0) / numOfStudents; //total attendance for every school 
+		
+		//output the average students and attendance to the user
+		System.out.print("School " + i + " had an average attendance of " + average + " students which means there");
+		System.out.println(" were " + df.format(per) + "% of all\nstudents present");
+		
+		//compare current maximum with this school and output the best school with attendance
+		if(max < per) {
+		max = per;
+		ind = i;
+		}
+		}
+		System.out.println("/nSchool" + ind + " had the best attendance this week with " + max + " %attendance.");
+		
+		//close the scanner when done
+		input.close();
+
+		}
+	}
+}
+import java.util.Scanner;
+
+public class PengchongmaProgram2 {
+
+	public static void main(String[] args) {
+		
+		//to get input from user
+		Scanner input = new Scanner(System.in);
+		
+		//variable declaration
+		int n;
+
+		//ask user to input 
+		System.out.println("Enter the value of n");
+		n= input.nextInt();
+
+		//to count no of triangles
+		int count = 1;
+		
+		//print two triangles
+		while(count<=2) {
+
+		for(int i=1;i<n;i++) { //printing line by line
+
+		for(int j=1;j<=i;j++){
+
+		System.out.print("@");
+		}
+		System.out.print("\n");
+		}
+		System.out.print("\n");
+		
+		count++;
+		
+		//close Scanner when done
+		input.close();
+
+
+		}
+
+	}
+
+}
