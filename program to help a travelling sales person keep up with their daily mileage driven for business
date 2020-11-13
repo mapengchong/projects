@@ -1,0 +1,107 @@
+import java.util.Scanner;
+
+public class PengchongMa_Assign12 {
+
+ public static void main(String[] args) {
+  
+  //set up Scanner object for user input
+  Scanner in = new Scanner(System.in);
+  System.out.print("How many days of mileage they want to enter: ");
+  
+  //variable declaration
+  int days = in.nextInt();
+  double miles[] = new double[days];
+  int choice;
+  
+  //loop for each day miles
+  for(int i=0; i<days; i++){
+  System.out.print("Day-"+(i+1)+"'s miles: ");
+  miles[i] = in.nextDouble();
+  }
+  
+  //output the menu for user, if user enter the wrong number it will ask user enter again until they enter the invalid choice
+  do{
+  System.out.println("User MENU Example");
+  System.out.println("1. Find the number of days with 0 miles driven.");
+  System.out.println("2. Find the day(s) with the highest number of miles driven.");
+  System.out.println("3. Find the average miles driven.");
+  System.out.println("4. Print the miles entered by day.");
+  System.out.println("5. Exit");
+  System.out.print("Choose an option from the menu: ");
+  choice = in.nextInt();
+  
+  //output the menu results to user by user choice
+  switch(choice){
+  case 1:
+  System.out.println("Number of days with 0 miles driven: "+findZero(miles));
+  break;
+  case 2:
+  System.out.println("Highest number of miles driven day is: "+findMaxDay(miles));
+  break;
+  case 3:
+  System.out.println("Average miles driven : "+calculateAvg(miles));
+  break;
+  case 4:
+  printMiles(miles);
+  break;
+  case 5:
+  System.exit(0);
+  default:
+  System.out.println("Invalid option selected. Please select (1-5)");
+  }
+  }while(choice!=5);
+
+  //close Scanner when done
+  in.close();
+
+  
+}//close of main
+ 
+ //method of find the 0 miles from user input
+ public static int findZero(double miles[]){
+
+  int c=0;
+  for(int i=0; i<miles.length; i++){
+  if(miles[i]==0)
+  c++;
+  }
+  return c;
+  }
+
+ //method of find the max
+  public static int findMaxDay(double miles[]){
+
+  int i,j=0; 
+           
+         // Initialize maximum element 
+         double max = miles[0]; 
+        
+         // Traverse array elements from second and 
+         // compare every element with current max   
+         for (i = 1; i < miles.length; i++) 
+             if (miles[i] > max) {
+                 max = miles[i];
+                 j=i;
+}
+         return j+1;
+  }
+  
+  //method of calculate the average miles
+  public static double calculateAvg(double miles[]){
+
+  double avg = 0.0;
+  for(int i=0; i<miles.length; i++){
+  avg += miles[i];
+  }
+  avg = avg/(double)miles.length;
+  return avg;
+  }
+
+  //method of print each day miles
+  public static void printMiles(double miles[]){
+
+  for(int i=0; i<miles.length; i++){
+  System.out.println("Day-"+(i+1)+" : "+miles[i]);
+  }
+  }
+}//close of class
