@@ -1,0 +1,176 @@
+public class Account
+{
+	//instance variables
+	private String accountOwnerName;
+	private int accountNumber;
+	private double balance;
+	
+	//constructor
+    public Account(String accountOwnerName,int accountNumber,double balance)
+	{
+	    this.accountOwnerName = accountOwnerName;
+	    this.accountNumber = accountNumber;
+	    this.balance = balance;
+    }
+	
+	// Getter
+    public String getAccountOwnerName() 
+	{
+        return accountOwnerName;
+    }
+	
+	public int getAccountNumber() 
+	{
+        return accountNumber;
+    }
+	
+	public double getBalance() 
+	{
+        return balance;
+    }
+
+    // Setter
+    public void setAccountOwnerName(String accountOwnerName) 
+	{
+        this.accountOwnerName = accountOwnerName;
+    }
+	
+	public void setAccountNumber(int accountNumber) 
+	{
+        this.accountNumber = accountNumber;
+    }
+	
+	public void setBalance(double balance) 
+	{
+        this.balance = balance;
+    }
+	
+	
+	
+	//methods
+	public void makeDeposite(double deposite)
+	{
+		balance = balance+deposite;
+	}
+	
+	public void makeWithdrawal(double withdrawal)
+	{
+		balance = balance - withdrawal;
+	}
+	
+	
+	@Override
+    public String toString()
+	{
+        return "AccountOwnerName : " + accountOwnerName + " , AccountNumber : " + accountNumber + ", Balance : " + balance + "\n";
+
+    }
+	
+  
+}
+
+
+
+
+public class Savings extends Account 
+{
+	//instance variable
+	//monthly interest rate
+    double interestRate;
+	
+	//getter
+	public double getInterestRate() 
+	{
+        return interestRate;
+    }
+
+    // Setter
+    public void setInterestRate(double interestRate) 
+	{
+        this.interestRate = interestRate;
+    }
+	
+    //constructor
+	public Savings(String accountOwnerName,int accountNumber,double balance,double interestRate)
+	{
+		super(accountOwnerName,accountNumber,balance);
+		this.interestRate = interestRate;
+	}
+	
+	//methods
+	public double calculateInterest()
+	{
+		return interestRate*getBalance();
+	}
+	
+	public void creditInterest()
+	{
+		setBalance(getBalance() + calculateInterest());
+	}
+	
+	@Override
+    public String toString()
+	{
+        return "AccountOwnerName : " + getAccountOwnerName() + " , AccountNumber : " + getAccountNumber() + ", Balance : " + getBalance() + " , InterestRate : "+interestRate+"\n";
+
+    }
+
+
+
+
+	
+}
+
+
+
+
+public class PengchongMaProgram1
+{
+	
+    public static void main(String[] args)
+	{
+		//Creating account obj
+		int accountNo = 98765;
+		String accountOwnerName = "Sally Adams";
+		double balance = 4505.45;
+		Account acc = new Account(accountOwnerName,accountNo,balance);
+		
+		//Creating saving obj
+		accountNo = 76544;
+		accountOwnerName = "Eric Idle";
+		balance = 6500;
+		double interestRate = 0.015;
+		Savings saving = new Savings(accountOwnerName,accountNo,balance,interestRate);
+		
+		//Showing account details for both customers
+		System.out.println(acc.toString());
+		System.out.println(saving.toString());
+		
+		//depositing $235 in sally adams account
+		acc.makeDeposite(235);
+		
+		//depositing $2500 in Eric Idel's account
+		saving.makeDeposite(2500);
+		
+		//Withdrawal 1020 from sally adams account
+		acc.makeWithdrawal(1020);
+		
+		//Showing account details for both customers
+		System.out.println(acc.toString());
+		System.out.println(saving.toString());
+		
+		//Printing interest earned by Eric Idel
+		System.out.println("Interest Earned by Eric Idel : "+saving.calculateInterest()+"\n");
+		
+		//Crediting interest to Eric account
+		saving.creditInterest();
+		
+		//Output new Account details of Eric account
+		System.out.println(saving.toString());
+		
+		
+		
+		
+	}
+	
+}
