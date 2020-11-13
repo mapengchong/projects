@@ -1,0 +1,104 @@
+import java.util.Scanner;
+
+public class PengchongMaProgram1 {
+
+	public static void main(String[] args) {
+		
+		//create scanner object
+		Scanner input = new Scanner(System.in);
+		
+		//collect numerator and denominator by user input
+		int numerator1 = input.nextInt();  //method in the scanner class to take integers
+		int denominator1 = input.nextInt();
+		int numerator2 = input.nextInt();
+		int denominator2 = input.nextInt();
+		
+		//close scanner when you done
+		input.close();
+		
+		//output the outline of my program
+		System.out.println("This program will calculate the sum, difference, ");
+		System.out.println("quotient for two fractions.");
+		
+		System.out.println("Enter the numerator of the first fraction: " + numerator1);
+		System.out.println("Enter the denominator of the first fraction: " + denominator1);
+		System.out.println("Enter the numerator of the second fraction: " + numerator2);
+		System.out.println("Enter the denominator of the second fraction: " + denominator2);
+		
+		//sum of two fractions
+		System.out.println("Results: ");
+		System.out.print(numerator1 +"/"+denominator1);
+		System.out.print(" + ");
+		System.out.print(numerator2 +"/"+denominator2);
+		System.out.print(" = ");
+		System.out.println(numerator1*denominator2+denominator1*numerator2+"/"+denominator1*denominator2);
+			
+		
+		//difference of two fractions
+		System.out.print(numerator1 +"/"+denominator1);
+		System.out.print(" - ");
+		System.out.print(numerator2 +"/"+denominator2);
+		System.out.print(" = ");
+		System.out.println(numerator1*denominator2-denominator1*numerator2+"/"+denominator1*denominator2);
+		
+		//product of two fractions
+		System.out.print(numerator1 +"/"+denominator1);
+		System.out.print(" * ");
+		System.out.print(numerator2 +"/"+denominator2);
+		System.out.print(" = ");
+		System.out.println(numerator1*numerator2+"/"+denominator1*denominator2);
+		
+		//quotient of two fractions
+		System.out.print("("+numerator1 +"/"+denominator1+")");
+		System.out.print(" / ");
+		System.out.print("("+numerator2 +"/"+denominator2+")");
+		System.out.print(" = ");
+		System.out.println(numerator1*denominator2+"/"+denominator1*numerator2);
+		
+		
+	}
+
+}
+
+import java.text.DecimalFormat;
+
+import javax.swing.JOptionPane;
+//program to calculate the final amount
+
+
+public class PengchongMaProgram2 {
+
+	public static void main(String[] args) {
+		
+		//variable declaractions
+		double amount;
+		double rate;
+		double years;
+		
+		String input;
+		
+		//collect the principal amount from the user using the dialog box
+		input = JOptionPane.showInputDialog("Enter your principal amount: ");
+		amount = Double.parseDouble(input);
+		
+		//collect the interest rate as a percent from the user using dialog box
+		input = JOptionPane.showInputDialog("Enter the interest rate as a percent: ");
+		rate = Double.parseDouble(input);
+		
+		//collect the number of years from the user using dialog box
+		input = JOptionPane.showInputDialog("Enter the number of years: ");
+		years = Double.parseDouble(input);
+		
+		//calculate the final amount
+		double finalAmount = amount * Math.pow(1+(rate/1200), 12*years);
+		
+		//output the final amount to the user using dialog box
+		DecimalFormat df = new DecimalFormat("#.##"); //make the output keep 2 decimal places
+		JOptionPane.showMessageDialog(null, "The final amount is $" +df.format(finalAmount));
+		
+		
+		
+		
+	}
+
+}
